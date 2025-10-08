@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Proyecto: Emoji Protagonista</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .header {
+            background: #FF9900;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+        }
+        .header h2 {
+            font-size: 1.4em;
+            opacity: 0.9;
+            font-weight: normal;
+        }
+        .week-plan {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 25px;
+        }
+        .week-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            border-left: 5px solid #4D97FF;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .week-card h3 {
+            color: #4D97FF;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .week-number {
+            background: #4D97FF;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .session {
+            background: white;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #FF9900;
+        }
+        .session h4 {
+            color: #FF9900;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .session-time {
+            background: #FF9900;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 25px;
+            background: #f8f9fa;
+        }
+        .criteria-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .criteria-card h3 {
+            color: #4D97FF;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .points {
+            font-size: 2em;
+            font-weight: bold;
+            color: #FF9900;
+            margin: 10px 0;
+        }
+        .rules-section {
+            padding: 25px;
+            background: white;
+        }
+        .rules-section h2 {
+            color: #4D97FF;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .rule-card {
+            background: #E9F1FF;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4D97FF;
+        }
+        .rule-card h3 {
+            color: #4D97FF;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .emoji-icon {
+            font-size: 1.5em;
+        }
+        .deliverables {
+            background: #FFF9C4;
+            padding: 25px;
+            border-top: 5px solid #FFD600;
+        }
+        .deliverables h2 {
+            color: #FF8C1A;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .deliverable-item {
+            background: white;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        .check-icon {
+            background: #4CAF50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background: #4D97FF;
+            color: white;
+        }
+        .timeline {
+            padding: 25px;
+            background: white;
+        }
+        .timeline h2 {
+            color: #4D97FF;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #4D97FF;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            margin: 30px 0;
+            width: 50%;
+            padding: 20px;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #FF9900;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #4D97FF;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                left: 20px;
+            }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Proyecto Final: Emoji Protagonista</h1>
+            <h2>Creación de Videojuego o Cómic Animado - Plan de 3 Semanas</h2>
+        </div>
+
+        <div class="rules-section">
+            <h2>📝 Reglas del Proyecto</h2>
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h3><span class="emoji-icon">🎯</span> Objetivo Principal</h3>
+                    <p>Crear un videojuego o cómic animado donde el emoji sea el protagonista, con una historia definida y un problema por resolver.</p>
+                </div>
+                <div class="rule-card">
+                    <h3><span class="emoji-icon">⏱️</span> Tiempo Disponible</h3>
+                    <p>3 semanas de trabajo:<br>
+                       <strong>Jueves:</strong> 120 minutos<br>
+                       <strong>Martes:</strong> 40 minutos<br>
+                       Total: 160 minutos por semana</p>
+                </div>
+                <div class="rule-card">
+                    <h3><span class="emoji-icon">⭐</span> Evaluación Final</h3>
+                    <p>La nota será determinada por el proyecto terminado, considerando creatividad, funcionamiento técnico y presentación.</p>
+                </div>
+                <div class="rule-card">
+                    <h3><span class="emoji-icon">💡</span> Elección Libre</h3>
+                    <p>Cada estudiante puede elegir entre:<br>
+                       • Videojuego interactivo<br>
+                       • Cómic animado con diálogos</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <h2>🗓️ Cronograma de 3 Semanas</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">📅 Semana 1 - HISTORIA Y PLANEACIÓN</div>
+                        <p><strong>Objetivo:</strong> Definir personaje, historia y diseño del proyecto</p>
+                        <ul>
+                            <li>Crear historia del emoji protagonista</li>
+                            <li>Diseñar personajes secundarios</li>
+                            <li>Planear mecánicas del juego o escenas del cómic</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">📅 Semana 2 - DESARROLLO TÉCNICO</div>
+                        <p><strong>Objetivo:</strong> Programar movimientos e interacciones básicas</p>
+                        <ul>
+                            <li>Implementar controles del personaje</li>
+                            <li>Crear escenarios y objetos</li>
+                            <li>Programar sistema de puntuación o progreso</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">📅 Semana 3 - PULIR Y PRESENTAR</div>
+                        <p><strong>Objetivo:</strong> Terminar detalles y preparar presentación</p>
+                        <ul>
+                            <li>Añadir efectos especiales y sonidos</li>
+                            <li>Corregir errores y mejorar jugabilidad</li>
+                            <li>Preparar demostración final</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="week-plan">
+            <div class="week-card">
+                <h3><span class="week-number">1</span> SEMANA 1: HISTORIA Y DISEÑO</h3>
+                
+                <div class="session">
+                    <h4><span class="session-time">JUEVES 120min</span> Sesión 1: Creación de la Historia</h4>
+                    <p><strong>Actividades:</strong></p>
+                    <ul>
+                        <li>Brainstorming de ideas (20 min)</li>
+                        <li>Desarrollo del personaje principal (30 min)</li>
+                        <li>Creación del conflicto y objetivo (40 min)</li>
+                        <li>Diseño de personajes secundarios (30 min)</li>
+                    </ul>
+                </div>
+                
+                <div class="session">
+                    <h4><span class="session-time">MARTES 40min</span> Sesión 2: Planificación Técnica</h4>
+                    <p><strong>Actividades:</strong></p>
+                    <ul>
+                        <li>Definir tipo de proyecto: juego o cómic (10 min)</li>
+                        <li>Lista de sprites necesarios (15 min)</li>
+                        <li>Plan de trabajo por semana (15 min)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <h3><span class="week-number">2</span> SEMANA 2: PROGRAMACIÓN</h3>
+                
+                <div class="session">
+                    <h4><span class="session-time">JUEVES 120min</span> Sesión 3: Movimientos Básicos</h4>
+                    <p><strong>Actividades:</strong></p>
+                    <ul>
+                        <li>Programar controles del emoji (40 min)</li>
+                        <li>Crear animaciones básicas (40 min)</li>
+                        <li>Implementar sistema de colisiones (40 min)</li>
+                    </ul>
+                </div>
+                
+                <div class="session">
+                    <h4><span class="session-time">MARTES 40min</span> Sesión 4: Escenarios y Objetos</h4>
+                    <p><strong>Actividades:</strong></p>
+                    <ul>
+                        <li>Diseñar fondos y escenarios (20 min)</li>
+                        <li>Crear objetos interactivos (20 min)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="week-card">
+                <h3><span class="week-number">3</span> SEMANA 3: FINALIZACIÓN</h3>
+                
+                <div class="session">
+                    <h4><span class="session-time">JUEVES 120min</span> Sesión 5: Pulir Detalles</h4>
+                    <p><strong>Actividades:</strong></p>
+                    <ul>
+                        <li>Añadir efectos de sonido (30 min)</li>
+                        <li>Mejorar gráficos y animaciones (40 min)</li>
+                        <li>Corregir errores y bugs (50 min)</li>
+                    </ul>
+                </div>
+                
+                <div class="session">
+                    <h4><span class="session-time">MARTES 40min</span> Sesión 6: Presentación Final</h4>
+                    <p><strong>Actividades:</strong></p>
+                    <ul>
+                        <li>Preparar demostración (20 min)</li>
+                        <li>Compartir proyectos entre compañeros (20 min)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="criteria-grid">
+            <div class="criteria-card">
+                <h3>🎭 HISTORIA Y CREATIVIDAD</h3>
+                <div class="points">30%</div>
+                <p>Originalidad del personaje<br>Calidad de la narrativa<br>Desarrollo del conflicto</p>
+            </div>
+            <div class="criteria-card">
+                <h3>⚙️ FUNCIONAMIENTO TÉCNICO</h3>
+                <div class="points">40%</div>
+                <p>Controles fluidos<br>Animaciones funcionando<br>Sin errores críticos</p>
+            </div>
+            <div class="criteria-card">
+                <h3>🎨 DISEÑO VISUAL</h3>
+                <div class="points">20%</div>
+                <p>Calidad de los gráficos<br>Consistencia visual<br>Efectos especiales</p>
+            </div>
+            <div class="criteria-card">
+                <h3>📢 PRESENTACIÓN</h3>
+                <div class="points">10%</div>
+                <p>Demostración clara<br>Explicación del proyecto<br>Creatividad en la presentación</p>
+            </div>
+        </div>
+
+        <div class="deliverables">
+            <h2>📦 Entregables Obligatorios</h2>
+            
+            <div class="deliverable-item">
+                <div class="check-icon">✓</div>
+                <div>
+                    <strong>Documento de Historia:</strong> Personaje principal, conflicto, objetivo y final
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="check-icon">✓</div>
+                <div>
+                    <strong>Proyecto Scratch Funcional:</strong> Videojuego o cómic animado completo
+                </div>
+            </div>
+            
+            <div class="deliverable-item">
+                <div class="check-icon">✓</div>
+                <div>
+                    <strong>Presentación de 3 minutos:</strong> Demostración y explicación del proyecto
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3>¡Manos a la obra! Tienen 3 semanas para crear algo increíble 🚀</h3>
+            <p>Recuerden: La creatividad y el esfuerzo serán recompensados</p>
+        </div>
+    </div>
+</body>
+</html>
